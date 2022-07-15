@@ -273,8 +273,12 @@ void ControllerBindingWidget_Base::initBindingWidgets()
 		ControllerSettingWidgetBinder::BindWidgetToInputProfileFloat(sif, widget, config_section, "SmallMotorScale", PAD::DEFAULT_MOTOR_SCALE);
 	if (QDoubleSpinBox* widget = findChild<QDoubleSpinBox*>(QStringLiteral("LargeMotorScale")); widget)
 		ControllerSettingWidgetBinder::BindWidgetToInputProfileFloat(sif, widget, config_section, "LargeMotorScale", PAD::DEFAULT_MOTOR_SCALE);
-	if (QDoubleSpinBox* widget = findChild<QDoubleSpinBox*>(QStringLiteral("PressureModifier")); widget)
-		ControllerSettingWidgetBinder::BindWidgetToInputProfileFloat(sif, widget, config_section, "PressureModifier", PAD::DEFAULT_PRESSURE_MODIFIER);
+	if (QDoubleSpinBox* widget = findChild<QDoubleSpinBox*>(QStringLiteral("PressureModifier1")); widget)
+		ControllerSettingWidgetBinder::BindWidgetToInputProfileFloat(sif, widget, config_section, "PressureModifier1", PAD::DEFAULT_PRESSURE_MODIFIER);
+	if (QDoubleSpinBox* widget = findChild<QDoubleSpinBox*>(QStringLiteral("PressureModifier2")); widget)
+		ControllerSettingWidgetBinder::BindWidgetToInputProfileFloat(sif, widget, config_section, "PressureModifier2", PAD::DEFAULT_PRESSURE_MODIFIER);
+	if (QDoubleSpinBox* widget = findChild<QDoubleSpinBox*>(QStringLiteral("PressureModifier3")); widget)
+		ControllerSettingWidgetBinder::BindWidgetToInputProfileFloat(sif, widget, config_section, "PressureModifier3", PAD::DEFAULT_PRESSURE_MODIFIER);
 }
 
 ControllerBindingWidget_DualShock2::ControllerBindingWidget_DualShock2(ControllerBindingWidget* parent)

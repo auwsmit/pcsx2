@@ -38,7 +38,7 @@ namespace PAD
 		PADAnalog m_analog[NUM_CONTROLLER_PORTS];
 		float m_axis_scale[NUM_CONTROLLER_PORTS][2];
 		float m_vibration_scale[NUM_CONTROLLER_PORTS][2];
-		float m_pressure_modifier[NUM_CONTROLLER_PORTS];
+		float m_pressure_modifier[NUM_CONTROLLER_PORTS][3];
 
 	public:
 		KeyStatus();
@@ -56,8 +56,12 @@ namespace PAD
 		}
 		__fi float GetVibrationScale(u32 pad, u32 motor) const { return m_vibration_scale[pad][motor]; }
 		__fi void SetVibrationScale(u32 pad, u32 motor, float scale) { m_vibration_scale[pad][motor] = scale; }
-		__fi float GetPressureModifier(u32 pad) const { return m_pressure_modifier[pad]; }
-		__fi void SetPressureModifier(u32 pad, float mod) { m_pressure_modifier[pad] = mod; }
+		__fi float GetPressureModifier1(u32 pad) const { return m_pressure_modifier[pad][0]; }
+		__fi float GetPressureModifier2(u32 pad) const { return m_pressure_modifier[pad][1]; }
+		__fi float GetPressureModifier3(u32 pad) const { return m_pressure_modifier[pad][2]; }
+		__fi void SetPressureModifier1(u32 pad, float mod) { m_pressure_modifier[pad][0] = mod; }
+		__fi void SetPressureModifier2(u32 pad, float mod) { m_pressure_modifier[pad][1] = mod; }
+		__fi void SetPressureModifier3(u32 pad, float mod) { m_pressure_modifier[pad][2] = mod; }
 
 		u32 GetButtons(u32 pad);
 		u8 GetPressure(u32 pad, u32 index);

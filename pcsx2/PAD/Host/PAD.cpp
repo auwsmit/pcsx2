@@ -222,8 +222,12 @@ void PAD::LoadConfig(const SettingsInterface& si)
 			g_key_status.SetVibrationScale(i, 1, small_motor_scale);
 		}
 
-		const float pressure_modifier = si.GetFloatValue(section.c_str(), "PressureModifier", 1.0f);
-		g_key_status.SetPressureModifier(i, pressure_modifier);
+		const float pressure_modifier1 = si.GetFloatValue(section.c_str(), "PressureModifier1", 1.0f);
+		const float pressure_modifier2 = si.GetFloatValue(section.c_str(), "PressureModifier2", 1.0f);
+		const float pressure_modifier3 = si.GetFloatValue(section.c_str(), "PressureModifier3", 1.0f);
+		g_key_status.SetPressureModifier1(i, pressure_modifier1);
+		g_key_status.SetPressureModifier2(i, pressure_modifier2);
+		g_key_status.SetPressureModifier3(i, pressure_modifier3);
 
 		LoadMacroButtonConfig(si, i, type, section);
 	}
@@ -262,7 +266,9 @@ void PAD::SetDefaultConfig(SettingsInterface& si)
 		si.SetFloatValue(section.c_str(), "AxisScale", DEFAULT_STICK_SCALE);
 		si.SetFloatValue(section.c_str(), "LargeMotorScale", DEFAULT_MOTOR_SCALE);
 		si.SetFloatValue(section.c_str(), "SmallMotorScale", DEFAULT_MOTOR_SCALE);
-		si.SetFloatValue(section.c_str(), "PressureModifier", DEFAULT_PRESSURE_MODIFIER);
+		si.SetFloatValue(section.c_str(), "PressureModifier1", DEFAULT_PRESSURE_MODIFIER);
+		si.SetFloatValue(section.c_str(), "PressureModifier2", DEFAULT_PRESSURE_MODIFIER);
+		si.SetFloatValue(section.c_str(), "PressureModifier3", DEFAULT_PRESSURE_MODIFIER);
 	}
 
 	// PCSX2 Controller Settings - Controller 1 / Controller 2 / ...
@@ -337,7 +343,9 @@ static const PAD::ControllerBindingInfo s_dualshock2_binds[] = {
 	{"L3", "L3 (Left Stick Button)", PAD::ControllerBindingType::Button, GenericInputBinding::L3},
 	{"R3", "R3 (Right Stick Button)", PAD::ControllerBindingType::Button, GenericInputBinding::R3},
 	{"Analog", "Analog Toggle", PAD::ControllerBindingType::Button, GenericInputBinding::System},
-	{"Pressure", "Apply Pressure", PAD::ControllerBindingType::Button, GenericInputBinding::Unknown},
+	{"Pressure1", "Apply Pressure Mod 1", PAD::ControllerBindingType::Button, GenericInputBinding::Unknown},
+	{"Pressure2", "Apply Pressure Mod 2", PAD::ControllerBindingType::Button, GenericInputBinding::Unknown},
+	{"Pressure3", "Apply Pressure Mod 3", PAD::ControllerBindingType::Button, GenericInputBinding::Unknown},
 	{"LUp", "Left Stick Up", PAD::ControllerBindingType::HalfAxis, GenericInputBinding::LeftStickUp},
 	{"LRight", "Left Stick Right", PAD::ControllerBindingType::HalfAxis, GenericInputBinding::LeftStickRight},
 	{"LDown", "Left Stick Down", PAD::ControllerBindingType::HalfAxis, GenericInputBinding::LeftStickDown},
