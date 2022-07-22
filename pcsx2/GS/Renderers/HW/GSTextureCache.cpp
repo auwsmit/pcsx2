@@ -200,10 +200,6 @@ GSTextureCache::Source* GSTextureCache::LookupSource(const GIFRegTEX0& TEX0, con
 	const GSLocalMemory::psm_t& psm_s = GSLocalMemory::m_psm[TEX0.PSM];
 	//const GSLocalMemory::psm_t& cpsm = psm.pal > 0 ? GSLocalMemory::m_psm[TEX0.CPSM] : psm;
 
-	// Until DX is fixed
-	if (psm_s.pal > 0)
-		g_gs_renderer->m_mem.m_clut.Read32(TEX0, TEXA);
-
 	const u32* clut = g_gs_renderer->m_mem.m_clut;
 
 	Source* src = NULL;
@@ -965,12 +961,12 @@ void GSTextureCache::InvalidateVideoMem(const GSOffset& off, const GSVector4i& r
 				// (128 pixels) target
 				if (bw > 2 && t->m_TEX0.TBW == bw && t->Inside(bp, bw, psm, rect) && GSUtil::HasCompatibleBits(psm, t->m_TEX0.PSM))
 				{
-					u32 rowsize = bw * 8192u;
-					u32 offset = (u32)((bp - t->m_TEX0.TBP0) * 256);
+					const u32 rowsize = bw * 8192u;
+					const u32 offset = (u32)((bp - t->m_TEX0.TBP0) * 256);
 
-					if (rowsize > 0 && offset % rowsize == 0)
+					if (offset % rowsize == 0)
 					{
-						int y = GSLocalMemory::m_psm[psm].pgs.y * offset / rowsize;
+						const int y = GSLocalMemory::m_psm[psm].pgs.y * offset / rowsize;
 
 						GL_CACHE("TC: Dirty in the middle of Target(%s) %d (0x%x->0x%x) pos(%d,%d => %d,%d) bw:%u", to_string(type),
 							t->m_texture ? t->m_texture->GetID() : 0,
